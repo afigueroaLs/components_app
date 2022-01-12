@@ -14,7 +14,7 @@ class InputsScreen extends StatelessWidget {
         'last_name' : 'herrera',
         'email' : 'email.email@gmail.com',
         'password' : '123455',
-        'role' : 'Admin'
+        'role' : 'Admin' 
 
       };
     return Scaffold(
@@ -36,6 +36,18 @@ class InputsScreen extends StatelessWidget {
                 const SizedBox(height: 30),
                  CustomInputField(labelText: 'Password', hintText: 'Password of user', helperText: 'Password of user', obscureText: true, formProperty: 'password', formValues: formValues,),
                 const SizedBox(height: 30),
+                DropdownButtonFormField<String>(
+                  value: 'Admin',
+                  items: const [
+                    DropdownMenuItem(value: 'Admin', child: Text('Admin')),
+                    DropdownMenuItem(value: 'Superuser', child: Text('Superuser')),
+                    DropdownMenuItem(value: 'Developer', child: Text('Developer')),
+                    DropdownMenuItem(value: 'Junior Dev', child: Text('Junior Dev')),
+                  ], 
+                  onChanged: (value){
+                    formValues['role'] = value?? 'Admin';
+                  }
+                ),
                 ElevatedButton(
                   onPressed: (){
                     FocusScope.of(context).requestFocus(FocusNode());
